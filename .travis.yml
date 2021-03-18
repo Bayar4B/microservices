@@ -47,6 +47,6 @@ jobs:
       - npm update
       - npm run-script build --prod
       - docker build -t unige/web-ui .
-      - echo "$DOCKER_PASSWORD" | docker login -u "bayar4b" --password-stdin      
+      - echo "BBaya2014" | docker login -u "bayar4b" --password-stdin      
       - docker tag unige/web-ui bayar4b/web-ui:latest      
       - docker push bayar4b/web-ui:latest
