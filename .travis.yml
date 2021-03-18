@@ -10,7 +10,7 @@ addons:
   sonarcloud:
     organization: "bayar4b" # the key of the org you chose at step #3
     token: 
-      secure: "Iq0YHp7ZCTGD8U89SIfF2mm8hCretK2yP6ACNsKx0qP4BmMgk60dmRTtPQZNkRdawCPcxsvpEIK3+eKbY1F+F5cpNmDdI6P3d8poJvqVW9+DjigV8Tvlzz4Pk0S8o4nIOy3UosF6sMXR7gF02KlWTaYWBAIbJgrRyUkB/0Z3UYQqORq0//7oY4Q+xKGMI6syjKwcUbhTQjdTFVEIRzeQ0MLi9aeeMw2mla+eA7OtpVz0uYKv9M2YKX0gvsOYqoiryULBPq+MEkkmVyz87kSJz7qQRIbULh6HPPAZzeJL9GAvlj5xd5FMu28R4WDuZIM9mofUI7Ctkw2Fc6uX3t2yQiF1FNiuiIlbTP1ZAk2hzR/d4A4907Zk8wtN1D64W9nqxR0hVIb0lgdKHhyxUy/93tPt1j8D7O3C/D89qgF3y3CUxXXd3Vq5jm2IgaoAhlqH7Yd7zdxhaHhjg6J4KHQqdRVn7DgCA+fZd4Q0qV92uJ5m4Jb7WTNW46BKrtF7KFNe1HffuPEpGc4/p7P74ZTucgGepUsOJO8PRnaYFdYKtEkzARUINFxP1zMGlIk6WJfp2b3UoZTxWfbxaec9XRdhTUhTnXBAdNAdnA4S9d0xace08mmR9PYGeBLwUYMGoeedWOYfzcTKyQ7XRa6Vl24+v7NJ1kXQUKlAtfBOiM/NZpc="
+      secure: "jx3kLA2Zk7ZjS8v8+BmD+lFoqc4jBp5xuzsnZVi1RNhpm3oFakLe/LmijsLwHEK/r/qHwRHtaUOg7lYOmUWuuoTL4BCOkgcpuG/SGyVDLgjUrGmLfLeJllw5Cpr7yvz5MfecYvulIK/6hQ+Sq4nMpv05EJS8U4M1wktXTklg3m4wmbmJxkxL6MC899ltLL/pjsQejcI8F3ThFkxzhYivs7eFd7kQ4fD0+MAOH3EqB0GTRQSSe0vwIv4RlFw3tO8ctAzyFd/+unIcAfFwAQzkpSrOYxiQxjxgQJrsMXfxJGaPDs7H7kxDUpiTaJ9o+7/K8e9UrE5Bq9zG7aP7IqOC4PFiF0sMfeHFdXRu7zWdJ3OLDSeTxsuqzuD+V8KYPOAueGmxNCaOZcvmJTE3jj8IYBB2dDhkFgat/m15550QGhQTpynWMojbcMH4+YfKTEzFXyCef5aGakCl3RMnUOr3+VofOTvplHGi4nnmqrERZ5HP4NTDvHW/Yxp6nkl29H0EQGysoPhD/S32yz8YCNjbZwWxvA+75bVVigqP6XEhzor0DO6ov93Hb2tvyekOAJp3SN32Mbv6eiVK5wAzn+qwtHg4jLnrOUPHjbRbmC8Q8U4gVay73wLecqRRHlV+QCkdXS58e+J/VnP85/WvyB8heqQ3Tg3WuMZAgPBfd77k1aU="
 script:
   # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Bayar4B_microservices
@@ -42,7 +42,7 @@ jobs:
       - docker push bayar4b/valuation-service:latest
       - docker push bayar4b/instrument-service:latest
       - docker push bayar4b/counterparty-service:latest
-      - mvn sonar:sonar -Dsonar.projectKey=Bayar4B_microservices -Dsonar.organization=bayar4b -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN     
+      - mvn sonar:sonar -Dsonar.projectKey=Bayar4B_microservices -Dsonar.organization=bayar4b -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=277302adf95440e14f397c4abb55e1cbf279fe47     
     - stage : Build
       script:
       - cd web-ui
