@@ -1,4 +1,4 @@
-drop table Counterparty if exists;
+drop table if exists Counterparty ;
 create table Counterparty (
     lei varchar(255) not null,
     city varchar(255),
@@ -11,10 +11,10 @@ create table Counterparty (
     jurisdiction varchar(255),
     lastUpdated timestamp,
     legalFormCode varchar(255),
-    nextRenewalDate timestamp,
+    nextRenewalDate timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     registrationAuthorityEntityID varchar(255),
     registrationAuthorityID varchar(255),
-    registrationDate timestamp,
+    registrationDate timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     registrationStatus varchar(255),
     status integer,
     primary key (lei)
