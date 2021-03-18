@@ -8,7 +8,9 @@ services:
 
 addons:
   sonarcloud:
-    organization: "bayar4b-github" # the key of the org you chose at step #3
+    organization: "bayar4b" # the key of the org you chose at step #3
+    token:
+      secure: "ss3LDnLL+9gyVNsjc5VCZlVeV4KpcU/aU88HxSG0xXS1KDExUbsY0brkH5AayLenkugBKIf8g7b6wHTH/4PM6XlPZFgBAOQs58y3irZw93sc74vZUE1Bsqa1sVgBcA9NEU693cZmkZ5bs8WKhNf4Ec7FCaxxvx2EuX9aE053NWt+RaYo0qHh8EX9ZDLBegYfGS/o6bumH1jX4RjJseOakQr3vs+LHxhkodQ6+6CqusiK8t/ZIXeWCbHKvCOcZ/X+iEGaG3d4MQNchwM5WasVQ25Y8807o5ePW3QWnGiNBrs7G1HYvwWYEWDRyzm1NhHlPPp/X0WGhj/CvAZWP6Wi2b8rJoQfkUoI+aHM7oPJl+UJryUsJ4bMtWy7w+Ylk19ZF7Y5m6RZbMqFA7ykmK0kWQDk1dziJqMCWXEp6qqCTF3r69J/gLMAAi5othiwdPYDY7KCDiS48vsgsNUjFk7+gsmpzOide1wKl0C1dey2zLcKSq+9J0PgOO+Q84kL+cduN8FJv5tjPlzc7q1TI4DB3iHAwXvyLnA89fNRSw5AP0x1eLCdCo7zt9jgyVjdY2TYeAGASgCaxMG6icPq5WLcDzMpRE5TM/NeVekGwpyiR4LaJPZHCJpRLGvBKPpNkrc+cLiqOcjNokv3Muitc6OnYQwJahI0TnhM/3wgkmmB6Zo="
 
 cache:
     directories:
@@ -37,6 +39,7 @@ jobs:
       - docker push bayar4b/valuation-service:latest
       - docker push bayar4b/instrument-service:latest
       - docker push bayar4b/counterparty-service:latest
+      - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Bayar4B_microservices
       - mvn sonar:sonar -Dsonar.projectKey=hostettler_microservices -Dsonar.organization=hostettler-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=10de2947edc0e089a82360cb2d1aa97482fafc28     
     - stage : Build
       script:
