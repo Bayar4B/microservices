@@ -31,7 +31,7 @@ jobs:
       script:
       - mvn install -Ppackage-docker-image  
       - echo "bayar4b"
-      - echo "BBaya2014" | docker login --username "bayar4b" --password-stdin
+      - echo "$DOCKER_PASSWORD" | docker login --username "bayar4b" --password-stdin
       - docker tag unige/api-gateway bayar4b/api-gateway:latest
       - docker tag unige/regulatory-service bayar4b/regulatory-service:latest
       - docker tag unige/valuation-service bayar4b/valuation-service:latest
@@ -52,6 +52,6 @@ jobs:
       - npm update
       - npm run-script build --prod
       - docker build -t unige/web-ui .
-      - echo "BBaya2014" | docker login -u "bayar4b" --password-stdin      
+      - echo "$DOCKER_PASSWORD" | docker login -u "bayar4b" --password-stdin      
       - docker tag unige/web-ui bayar4b/web-ui:latest      
       - docker push bayar4b/web-ui:latest
