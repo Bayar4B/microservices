@@ -9,8 +9,11 @@ services:
 addons:
   sonarcloud:
     organization: "bayar4b" # the key of the org you chose at step #3
-    token:
-      secure: "ss3LDnLL+9gyVNsjc5VCZlVeV4KpcU/aU88HxSG0xXS1KDExUbsY0brkH5AayLenkugBKIf8g7b6wHTH/4PM6XlPZFgBAOQs58y3irZw93sc74vZUE1Bsqa1sVgBcA9NEU693cZmkZ5bs8WKhNf4Ec7FCaxxvx2EuX9aE053NWt+RaYo0qHh8EX9ZDLBegYfGS/o6bumH1jX4RjJseOakQr3vs+LHxhkodQ6+6CqusiK8t/ZIXeWCbHKvCOcZ/X+iEGaG3d4MQNchwM5WasVQ25Y8807o5ePW3QWnGiNBrs7G1HYvwWYEWDRyzm1NhHlPPp/X0WGhj/CvAZWP6Wi2b8rJoQfkUoI+aHM7oPJl+UJryUsJ4bMtWy7w+Ylk19ZF7Y5m6RZbMqFA7ykmK0kWQDk1dziJqMCWXEp6qqCTF3r69J/gLMAAi5othiwdPYDY7KCDiS48vsgsNUjFk7+gsmpzOide1wKl0C1dey2zLcKSq+9J0PgOO+Q84kL+cduN8FJv5tjPlzc7q1TI4DB3iHAwXvyLnA89fNRSw5AP0x1eLCdCo7zt9jgyVjdY2TYeAGASgCaxMG6icPq5WLcDzMpRE5TM/NeVekGwpyiR4LaJPZHCJpRLGvBKPpNkrc+cLiqOcjNokv3Muitc6OnYQwJahI0TnhM/3wgkmmB6Zo="
+    token: 
+      secure: "rSDHoc793154lmprGXtfpkm9+eismVu+R1+c4OKPec7ed8cG7iojSiGwhmJqLG2ntRfLS88xNWjGWSicoYZAddM/DNLy0TCQStaMbV/BFE8/9AkflZZjBuTMRt4I3TOe44fo8m6w2MddqePZlDtDtZFoGD+nIIRHMKw1+6S9hb7Bw6CLFEjruiO/Fd68CF/nkuz8Jo77obMudyGxnKX9z7M25fzjFFzuNqDMjzgSECbkC4vl7HcGNw7/AWJzbDBIzIE8aEFJD0S/jPS+o4+gwdgVqatlfAyQ8KgWah6IWom17nCQvW/240tJVjKXFXHGGxmL0ZsTLdCF9vwU4kiippxz008bud32atU8WLJOcSkbAHtlVHDh0NtfyJG3L5/PziqF/bptWByjn9XcBwLLQcanHE6Tux6XkpPXO2vZhA+HVp7SdSHwhZe1sIftut4wWDEsyTsF+Kb3NPK91B9hXbQXCnvaPLwvMQn1pVXuiI+B73FUWvmaYxhF3JKL374klqBsYvYP8iXYMYWL8G65IAW60NlC8o85lYZz23HwQQ9TUrzakOzbUseDYfBJLmhPYBjJbQovixzRcSAKqXFX6dNSxn6fxmLBWlwjz+fzU2rtOPFXCN7/Bis5j6lJme0cuIY/XhtDVqaTKEtn52B+LuubVcVoWs+P5HLLVNAuUHg="
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Bayar4B_microservices
 
 cache:
     directories:
@@ -39,8 +42,7 @@ jobs:
       - docker push bayar4b/valuation-service:latest
       - docker push bayar4b/instrument-service:latest
       - docker push bayar4b/counterparty-service:latest
-      - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Bayar4B_microservices
-      # - mvn sonar:sonar -Dsonar.projectKey=Bayar4B_microservices -Dsonar.organization=bayar4b -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=10de2947edc0e089a82360cb2d1aa97482fafc28     
+      - mvn sonar:sonar -Dsonar.projectKey=Bayar4B_microservices -Dsonar.organization=bayar4b -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=7147ce62b9daab44c83626f2b1f448386c220bb5     
     - stage : Build
       script:
       - cd web-ui
